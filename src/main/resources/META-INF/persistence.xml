@@ -8,7 +8,8 @@
             Persistence unit for the JPA tutorial of the Hibernate Getting Started Guide
         </description>
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
-        <class>org.halyph.sessiondemo.Event</class>
+        <class>com.talentica.web.model.User</class>
+        <class>com.talentica.web.model.Blog</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />

@@ -203,23 +203,26 @@ hr {
 	<body>
 		<div id="id01" class="modal">
 		  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-		  <form name="signupForm" class="modal-content" action="/nextPageToBeLoaded.jsp">
+		  <form name="signupForm" class="modal-content" modelAttribute="user" method="POST" action="/user/create">
 			<div class="container">
 			  <h1>Sign Up</h1>
 			  <p>Please fill in this form to create an account.</p>
 			  <hr>
 			  
 			  <label for="email"><b>Full Name</b></label>
-			  <input type="text" placeholder="Enter Full Name" name="fullname" required>
+			  <input type="text" placeholder="Enter Full Name" name="fullName" required>
+
+			  <label for="email"><b>User Name</b></label>
+              			  <input type="text" placeholder="Enter Full Name" name="username" required>
 			  
 			  <label for="email"><b>Email</b></label>
-			  <input type="text" placeholder="Enter Email" name="email" required>
+			  <input type="text" placeholder="Enter Email" name="emailId" required>
 
 			  <label for="psw"><b>Password</b></label>
-			  <input type="password" placeholder="Enter Password" name="psw" required>
+			  <input type="password" placeholder="Enter Password" name=".password" required>
 
 			  <label for="psw-repeat"><b>Repeat Password</b></label>
-			  <input type="password" placeholder="Re-enter Password" name="psw-repeat" required>
+			  <input type="password" placeholder="Re-enter Password" name="re-password" required>
 
 			  <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
 
@@ -280,9 +283,6 @@ hr {
 				}
 			});
 		}
-
-
-
 		</script>
   </body> 
 </html>

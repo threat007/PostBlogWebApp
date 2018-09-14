@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.Column;
@@ -16,11 +17,15 @@ import java.io.Serializable;
 import java.util.Calendar;
 
 @Getter
+@Setter
 @ToString
 @AllArgsConstructor
 @Entity
 public class User implements Serializable{
 
+	public User(){
+
+	}
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -29,7 +34,6 @@ public class User implements Serializable{
 	private String username;
 
 	@JsonIgnore
-	@Getter(AccessLevel.NONE)
 	private String password;
 
 	private String fullName;
@@ -44,6 +48,6 @@ public class User implements Serializable{
 	private Calendar modifiedAt;
 
 	public enum UserRole {
-		SUPER_ADMIN, ADMIN, BLOGGER
+		SUPER_ADMIN, ADMIN, USER
 	}
 }

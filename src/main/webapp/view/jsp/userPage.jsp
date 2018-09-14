@@ -2,11 +2,10 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
-<script src="../ckeditor.js"></script>
-<script src="js/sample.js"></script>
-<link rel="stylesheet" href="css/samples.css">
-<link rel="stylesheet" href="toolbarconfigurator/lib/codemirror/neo.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <style>
+<link rel="stylesheet" href="view/home/widgEditor.css" />
 body {font-family: Arial;}
 
 /* Style the tab */
@@ -72,46 +71,44 @@ body {font-family: Arial;}
 </head>
 <body>
 
-<h2>Welcome Full Name</h2>
+<h2>Welcome ${user.fullName} || ${user.id}</h2>
 
 <div class="tab">
   <button class="tablinks" onclick="openCity(event, 'createBlog')">Create Blog</button>
-  <button class="tablinks" onclick="openCity(event, 'myBlogs')">My Blogs</button>
+  <button class="tablinks" id="myBlogBtn" onclick="openCity(event, 'myBlogs')">My Blogs</button>
 </div>
 
+<form name="CreateBlogForm" class="modal-content animate" method="POST" action="/${user.id}/blog">
 <div id="createBlog" class="tabcontent">
   <h3>Create New Blog</h3>
-  <div class="adjoined-bottom">
-      <div class="grid-container">
-          <div class="grid-width-100">
-              <div id="editor">
-                  <h1>Hello world!</h1>
-                  <p>I'm an instance of <a href="https://ckeditor.com">CKEditor</a>.</p>
-              </div>
+    <input type="text" name="title" />
+    <br/><br/>
+    <textarea id="widgEditor" name="blogContent"></textarea>
+    <br/>
+  <button type="submit" >Create Blog</button>
+</div>
+</form>
+
+<form id="myBlogsForm" method="POST" action="">
+  <div id="myBlogs" class="tabcontent">
+    <h3>My Blogs</h3>
+
+    <button class="accordion">${blogs[0].title}</button>
+    <div class="panel">
+    <p>${blogs[0].blogContent}</p>
+    </div>
+
+      <button class="accordion">${blogs[1].title}</button>
+          <div class="panel">
+          <p>${blogs[1].blogContent}</p>
           </div>
-      </div>
+
+      <button class="accordion">${blogs[2].title}</button>
+          <div class="panel">
+          <p>${blogs[2].blogContent}</p>
+          </div>
   </div>
-  <button type="submit" value="Create Blog" />
-</div>
-
-<div id="myBlogs" class="tabcontent">
-  <h3>My Blogs</h3>
-  
-  <button class="accordion">Section 1<img src="xyz.png" alt="Edit" /></button>
-  <div class="panel">
-  <p>Blog contecta comes here.... </p>
-</div>
-
-<button class="accordion">Section 2</button>
-<div class="panel">
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-</div>
-
-<button class="accordion">Section 3</button>
-<div class="panel">
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-</div>
-</div>
+</form>
 
 <script>
 function openCity(evt, cityName) {
@@ -126,11 +123,11 @@ function openCity(evt, cityName) {
     }
     document.getElementById(cityName).style.display = "block";
     evt.currentTarget.className += " active";
+
 }
 
 var acc = document.getElementsByClassName("accordion");
 var i;
-
 for (i = 0; i < acc.length; i++) {
     acc[i].addEventListener("click", function() {
         this.classList.toggle("active");
